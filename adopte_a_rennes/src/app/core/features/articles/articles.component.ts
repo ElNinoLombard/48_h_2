@@ -15,6 +15,7 @@ export interface Article {
 })
 export class ArticlesComponent implements OnInit {
   searchTerm: string = '';
+  originalArticles: Article[] = [];
 
   articles: Article[] = [
     {
@@ -51,16 +52,25 @@ export class ArticlesComponent implements OnInit {
 
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.originalArticles = this.articles;
+  }
 
   filterArticles(): void {
-    const filteredArticles = this.articles.filter((article) => {
-      const titleSubstring = article.title.substring(0, 3).toLowerCase();
-      const searchTermSubstring = this.searchTerm.substring(0, 3).toLowerCase();
-      return titleSubstring.includes(searchTermSubstring);
-    });
+    if (this.searchTerm.trim() === '') {
+      // If the search term is empty, display all articles
+      this.articles = this.originalArticles;
+    } else {
+      // Perform filtering based on the search term
+      const filteredArticles = this.originalArticles.filter((article) => {
+        const lowerCaseTitle = article.title.toLowerCase();
+        const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+        return lowerCaseTitle.includes(lowerCaseSearchTerm);
+      });
 
-    // Use the filtered articles as needed
+      // Assign the filtered articles to the main articles array
+      this.articles = filteredArticles;
+    }
   }
 
   showFullContent(article: Article): void {
