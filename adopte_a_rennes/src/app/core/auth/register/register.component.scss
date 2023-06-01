@@ -1,0 +1,60 @@
+.page-register{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-register, form{
+    display: flex;
+    flex-direction: column;
+}
+
+form{
+    align-items: center;
+}
+
+.form-register input {
+    background-color: #ffffff00;
+    border: white 1px solid;
+    border-radius: 40px;
+    color: white;
+    width: 560px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.form-register p, .form-register #checkbox, .form-register ul{
+    color: black;
+    width: 560px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.form-register ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-register input::placeholder{
+    color: white;
+}
+
+.form-register input:focus{
+    outline: none;
+}
+
+#checkbox{
+    display: flex;
+    flex-direction: row;
+}
+
+#checkbox input{
+    width: 40px;
+}
+
+img{
+    width: 25%;
+    height: 25%;
+}
