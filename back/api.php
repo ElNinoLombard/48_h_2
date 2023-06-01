@@ -4,6 +4,8 @@ include 'db_connect.php';
 $request_method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 $location = '/48_h_2/back/api';
+$returnData = ['data' => [], 'message' => 'Succes'];
+
 if ($location) {
     $route = str_replace($location, '', $uri);
 }
@@ -17,7 +19,7 @@ switch ($request_method) {
             if (!empty($_GET['id'])) {
                 getUserById($_GET['id']);
             } else {
-                return 'Id manquant';
+                return $returnData['message'] = 'Id manquant';
             }
         }
         break;
@@ -26,7 +28,8 @@ switch ($request_method) {
             if (!empty($_POST['mail']) && !empty($_POST['password'])) {
                 checkConnection($_POST['mail'], $_POST['password']);
             } else {
-                return 'Adresse mail ou mot de pase manquant';
+                return $returnData['message'] = 'Adresse mail et/ou mot de passe manquant';
+
             }
         }
         if (preg_match('/article.*/', $route)) {
@@ -39,18 +42,16 @@ switch ($request_method) {
                 $id = intval($_GET['id']);
                 updateArticle($id);
             } else {
-                return "Id manquant";
+                return $returnData['message'] = 'Id manquant';
             }
         }
         break;
     case 'DELETE':
         if (preg_match('/article.*/', $route)) {
             if (!empty($_GET['id'])) {
-                $id = intval($_GET['id']);
-                deleteArticle($id);
+                deleteArticle();
             } else {
-                return "Id manquant";
-
+                return $returnData['message'] = 'Id manquant';
             }
         }
         break;
@@ -60,41 +61,41 @@ switch ($request_method) {
 
 function getUserById($id) {
     global $connexion;
+    global $returnData;
 
     $query = "SELECT * FROM user LEFT JOIN role ON role_id = role.id WHERE user.id=$id";
     $result = mysqli_query($connexion, $query);
     echo $query;
-    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $returnData['message'] = mysqli_connect_error();
 
-    return $rows;
+    var_dump($returnData);
+    return $returnData;
 }
 
 function checkConnection($mail, $password) {
     global $connexion;
+    global $returnData;
 
     $query = "SELECT * FROM user
          INNER JOIN image ON article.image_id = image.id
          where mail = '$mail' and password = '$password'";
     echo $query;
     $result = mysqli_query($connexion, $query);
-    var_dump($result);
+
     if ($result) {
-        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     } else {
-        $rows = false;
-        $connexion_result = mysqli_connect_error();
-        var_dump($connexion_result);
+        $returnData['message'] = mysqli_connect_error();
     }
 
-    $dto = ['data' => $rows];
-
-    var_dump($dto);
-    return $dto;
+    return $returnData;
 }
 
 
 function getAllArticle() {
     global $connexion;
+    global $returnData;
 
     $query = "SELECT * FROM article
          INNER JOIN image ON article.image_id = image.id
@@ -102,34 +103,36 @@ function getAllArticle() {
     $result = mysqli_query($connexion, $query);
     var_dump($query);
     if ($result) {
-        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     } else {
-        $rows = "Error";
+        $returnData['message'] = "Error 500";
     }
 
-    var_dump($rows);
-    return $rows;
+    return $returnData;
 }
 
 function updateArticle($id) {
     global $connexion;
+    global $returnData;
 
     $modified = date('Y-m-d h:i:s');
     $data = array();
     parse_str(file_get_contents('php://input'),$data);
     var_dump($data);
     $query = "UPDATE produit SET title='" . $data['title'] . "', description='" . $data['description'] . "', author_id=" . $data['author_id'] . ", image_id=" . $data['image'] . ", modifiedDate='$modified'";
-    $result = mysqli_query($connexion, $query);
+    $returnData['data'] = mysqli_query($connexion, $query);
 
-    if ($result) {
-        echo 'PUT réussi';
+    if ($returnData['data']) {
+        $returnData['message'] = 'PUT réussi';
     } else {
-        echo 'PUT échoué';
+        $returnData['message'] = 'PUT échoué';
     }
 }
 
 function addArticle() {
     global $connexion;
+    global $returnData;
+
     $title = $_POST['title'];
     $description = $_POST['description'];
     $author_id = $_POST['author_id'];
@@ -138,26 +141,27 @@ function addArticle() {
 
     $query = "INSERT INTO article (title, description, author_id, image_id, creationDate, modifiedDate)
     VALUES ('$title', '$description', $author_id, $image_id, '$created', '$modified')";
-    $result = mysqli_query($connexion, $query);
+    $returnData['data'] = mysqli_query($connexion, $query);
 
-    if ($result) {
-        echo 'POST réussi';
+    if ($returnData['data']) {
+        $returnData['message'] = 'PUT réussi';
     } else {
-        echo $query;
-        echo 'POST échoué';
+        $returnData['message'] = 'PUT échoué';
     }
 }
 
-function deleteArticle($id) {
+function deleteArticle() {
     global $connexion;
+    global $returnData;
+
     $id = $_GET['id'];
 
     $query = "DELETE FROM article WHERE id=$id";
-    $result = mysqli_query($connexion, $query);
+    $returnData['data'] = mysqli_query($connexion, $query);
 
-    if ($result) {
-        echo 'DELETE réussi';
+    if ($returnData['data']) {
+        $returnData['message'] = 'PUT réussi';
     } else {
-        echo 'DELETE échoué';
+        $returnData['message'] = 'PUT échoué';
     }
 }
