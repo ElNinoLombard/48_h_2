@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  @Input() isUserConnected: boolean = true;
+  @Input() isUserConnected: boolean = false;
 
   constructor(private authService: AuthenticationService) {}
 
