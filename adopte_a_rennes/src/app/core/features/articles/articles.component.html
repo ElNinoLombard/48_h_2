@@ -12,12 +12,12 @@
         <h1>{{ article.title }}</h1>
         <hr />
         {{
-          article.content.length > 200
-            ? (article.content | slice : 0 : 200) + "..."
+          article.content.length > 300
+            ? (article.content | slice : 0 : 300) + "..."
             : article.content
         }}
         <button
-          *ngIf="article.content.length > 200"
+          *ngIf="article.content.length > 300"
           (click)="showFullContent(article)"
         >
           voir plus
