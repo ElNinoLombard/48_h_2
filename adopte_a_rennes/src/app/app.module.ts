@@ -10,6 +10,7 @@ import { AcceuilComponent } from './core/features/acceuil/acceuil.component';
 import { ArticlesComponent } from './core/features/articles/articles.component';
 import { AssociationsComponent } from './core/features/associations/associations.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

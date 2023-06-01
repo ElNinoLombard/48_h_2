@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ArticlesService } from 'src/app/services/articles.service';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-articles',
@@ -9,7 +9,7 @@ import { ArticlesService } from 'src/app/services/articles.service';
 })
 export class ArticlesComponent implements OnInit {
   form!: FormGroup;
-  constructor(private articlesService: ArticlesService,
+  constructor(private articleService: ArticleService,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -18,6 +18,7 @@ export class ArticlesComponent implements OnInit {
         '',Validators.required
       )
     })
+    this.articleService.getAllArticle();
   }
 
   articles = [

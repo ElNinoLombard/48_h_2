@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backLocation: '48_h_2/back/api'
+  backLocation: '/48_h_2/back/api'
 };
 
 /*
