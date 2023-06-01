@@ -69,7 +69,6 @@ function getUserById($id) {
     $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $returnData['message'] = mysqli_connect_error();
 
-    var_dump($returnData);
     return $returnData;
 }
 
@@ -101,7 +100,6 @@ function getAllArticle() {
          INNER JOIN image ON article.image_id = image.id
          ORDER BY modifiedDate DESC";
     $result = mysqli_query($connexion, $query);
-    var_dump($query);
     if ($result) {
         $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     } else {
@@ -118,7 +116,6 @@ function updateArticle($id) {
     $modified = date('Y-m-d h:i:s');
     $data = array();
     parse_str(file_get_contents('php://input'),$data);
-    var_dump($data);
     $query = "UPDATE produit SET title='" . $data['title'] . "', description='" . $data['description'] . "', author_id=" . $data['author_id'] . ", image_id=" . $data['image'] . ", modifiedDate='$modified'";
     $returnData['data'] = mysqli_query($connexion, $query);
 
