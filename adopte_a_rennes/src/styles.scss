@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Comfortaa", sans-serif;
+  color: #222222;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+a {
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--featuring-text-color);
+
+  &:hover {
+    cursor: pointer;
+    ;
+  }
+}
+
+i {
+  font-size: 16px;
+  font-weight: 400;
+}

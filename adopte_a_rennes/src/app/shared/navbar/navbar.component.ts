@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @Input() isUserConnected: boolean = false;
+  loggedOutTemplate = true;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    // Check the authentication status when the component is initialized
+    this.checkAuthenticationStatus();
+  }
+
+  checkAuthenticationStatus() {
+    // Use your authentication service to check if the user is authenticated
+    this.isUserConnected = this.authService.isAuthenticated();
   }
 
 }
