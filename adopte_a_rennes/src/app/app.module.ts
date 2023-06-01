@@ -9,6 +9,7 @@ import { RegisterComponent } from './core/auth/register/register.component';
 import { AcceuilComponent } from './core/features/acceuil/acceuil.component';
 import { ArticlesComponent } from './core/features/articles/articles.component';
 import { AssociationsComponent } from './core/features/associations/associations.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AssociationsComponent } from './core/features/associations/associations
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

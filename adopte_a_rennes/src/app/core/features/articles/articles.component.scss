@@ -1,0 +1,11 @@
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap
+  }
+
+  .content {
+    flex-basis: 33.33%;
+    box-sizing: border-box;
+  }
