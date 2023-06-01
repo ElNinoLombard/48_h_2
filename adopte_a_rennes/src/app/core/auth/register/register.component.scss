@@ -78,3 +78,17 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+button {
+  padding: 1em;
+  border: solid 1px black;
+  background: transparent;
+  transition: all ease-in-out 0.3s;
+
+  &:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+  }
+}
