@@ -1,0 +1,14 @@
+.container-title{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#first, #second{
+    color: #fff;
+}
+#second{
+    margin-left: 10px;
+    background-color: black;
+}

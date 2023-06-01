@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [AuthGuard], // Apply the auth guard to the dashboard parent route
+    //canActivate: [AuthGuard], // Apply the auth guard to the dashboard parent route
     children: [
       { path: 'articles', component: ArticlesComponent },
       { path: 'associations', component: AssociationsComponent }
