@@ -19,7 +19,7 @@ switch ($request_method) {
             if (!empty($_GET['id'])) {
                 getUserById($_GET['id']);
             } else {
-                return $returnData['message'] = 'Id manquant';
+                echo json_encode($returnData['message'] = 'Id manquant');
             }
         }
         break;
@@ -28,7 +28,7 @@ switch ($request_method) {
             if (!empty($_POST['mail']) && !empty($_POST['password'])) {
                 checkConnection($_POST['mail'], $_POST['password']);
             } else {
-                return $returnData['message'] = 'Adresse mail et/ou mot de passe manquant';
+                echo json_encode($returnData['message'] = 'Adresse mail et/ou mot de passe manquant');
 
             }
         }
@@ -42,7 +42,7 @@ switch ($request_method) {
                 $id = intval($_GET['id']);
                 updateArticle($id);
             } else {
-                return $returnData['message'] = 'Id manquant';
+                echo json_encode($returnData['message'] = 'Id manquant');
             }
         }
         break;
@@ -51,7 +51,7 @@ switch ($request_method) {
             if (!empty($_GET['id'])) {
                 deleteArticle();
             } else {
-                return $returnData['message'] = 'Id manquant';
+                echo json_encode($returnData['message'] = 'Id manquant');
             }
         }
         break;
@@ -65,11 +65,11 @@ function getUserById($id) {
 
     $query = "SELECT * FROM user LEFT JOIN role ON role_id = role.id WHERE user.id=$id";
     $result = mysqli_query($connexion, $query);
-    echo $query;
+
     $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $returnData['message'] = mysqli_connect_error();
 
-    return $returnData;
+    echo json_encode($returnData);
 }
 
 function checkConnection($mail, $password) {
@@ -79,7 +79,6 @@ function checkConnection($mail, $password) {
     $query = "SELECT * FROM user
          INNER JOIN image ON article.image_id = image.id
          where mail = '$mail' and password = '$password'";
-    echo $query;
     $result = mysqli_query($connexion, $query);
 
     if ($result) {
@@ -88,7 +87,7 @@ function checkConnection($mail, $password) {
         $returnData['message'] = mysqli_connect_error();
     }
 
-    return $returnData;
+    echo json_encode($returnData);
 }
 
 
@@ -105,8 +104,7 @@ function getAllArticle() {
     } else {
         $returnData['message'] = "Error 500";
     }
-
-    return $returnData;
+    echo json_encode($returnData);
 }
 
 function updateArticle($id) {
@@ -124,6 +122,8 @@ function updateArticle($id) {
     } else {
         $returnData['message'] = 'PUT échoué';
     }
+
+    echo json_encode($returnData);
 }
 
 function addArticle() {
@@ -145,6 +145,8 @@ function addArticle() {
     } else {
         $returnData['message'] = 'PUT échoué';
     }
+
+    echo json_encode($returnData);
 }
 
 function deleteArticle() {
@@ -161,4 +163,6 @@ function deleteArticle() {
     } else {
         $returnData['message'] = 'PUT échoué';
     }
+
+    echo json_encode($returnData);
 }
