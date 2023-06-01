@@ -8,8 +8,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  @Input() isUserConnected: boolean = false;
-  loggedOutTemplate = true;
+  @Input() isUserConnected: boolean = true;
 
   constructor(private authService: AuthenticationService) {}
 
@@ -20,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
   checkAuthenticationStatus() {
     // Use your authentication service to check if the user is authenticated
-    this.isUserConnected = this.authService.isAuthenticated();
+    // this.isUserConnected = this.authService.isAuthenticated();
   }
 
 }
