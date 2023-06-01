@@ -1,0 +1,13 @@
+.close-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+}

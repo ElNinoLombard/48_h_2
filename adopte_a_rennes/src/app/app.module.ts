@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,8 @@ import { RegisterComponent } from './core/auth/register/register.component';
 import { AcceuilComponent } from './core/features/acceuil/acceuil.component';
 import { ArticlesComponent } from './core/features/articles/articles.component';
 import { AssociationsComponent } from './core/features/associations/associations.component';
+import { ArticleDialogComponent } from './core/features/articles/article-dialog/article-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,17 @@ import { AssociationsComponent } from './core/features/associations/associations
     RegisterComponent,
     AcceuilComponent,
     ArticlesComponent,
-    AssociationsComponent
+    AssociationsComponent,
+    ArticleDialogComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

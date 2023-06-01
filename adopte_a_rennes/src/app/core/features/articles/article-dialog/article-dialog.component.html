@@ -1,0 +1,13 @@
+<div class="dialog-wrapper">
+  <div class="close-button">
+    <button (click)="onCloseClick()">
+      <img src="../../../../../assets/images/icon-close.svg" alt="" />
+    </button>
+  </div>
+  <div class="dialog-container">
+    <h1>{{ data.title }}</h1>
+    <hr />
+    <p>{{ data.content }}</p>
+    <em> - {{ data.author }}</em>
+  </div>
+</div>
