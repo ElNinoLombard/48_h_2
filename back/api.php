@@ -1,0 +1,163 @@
+<?php
+include 'db_connect.php';
+
+$request_method = $_SERVER['REQUEST_METHOD'];
+$uri = $_SERVER['REQUEST_URI'];
+$location = '/48_h_2/back/api';
+if ($location) {
+    $route = str_replace($location, '', $uri);
+}
+
+switch ($request_method) {
+    case 'GET':
+        if (preg_match('/article.*/', $route)) {
+            getAllArticle();
+        }
+        if (preg_match('/myaccount.*/', $route)) {
+            if (!empty($_GET['id'])) {
+                getUserById($_GET['id']);
+            } else {
+                return 'Id manquant';
+            }
+        }
+        break;
+    case 'POST':
+        if (preg_match('/login.*/', $route)) {
+            if (!empty($_POST['mail']) && !empty($_POST['password'])) {
+                checkConnection($_POST['mail'], $_POST['password']);
+            } else {
+                return 'Adresse mail ou mot de pase manquant';
+            }
+        }
+        if (preg_match('/article.*/', $route)) {
+            addArticle();
+        }
+        break;
+    case 'PUT':
+        if (preg_match('/article.*/', $route)) {
+            if (!empty($_GET['id'])) {
+                $id = intval($_GET['id']);
+                updateArticle($id);
+            } else {
+                return "Id manquant";
+            }
+        }
+        break;
+    case 'DELETE':
+        if (preg_match('/article.*/', $route)) {
+            if (!empty($_GET['id'])) {
+                $id = intval($_GET['id']);
+                deleteArticle($id);
+            } else {
+                return "Id manquant";
+
+            }
+        }
+        break;
+    default:
+        break;
+}
+
+function getUserById($id) {
+    global $connexion;
+
+    $query = "SELECT * FROM user LEFT JOIN role ON role_id = role.id WHERE user.id=$id";
+    $result = mysqli_query($connexion, $query);
+    echo $query;
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $rows;
+}
+
+function checkConnection($mail, $password) {
+    global $connexion;
+
+    $query = "SELECT * FROM user
+         INNER JOIN image ON article.image_id = image.id
+         where mail = '$mail' and password = '$password'";
+    echo $query;
+    $result = mysqli_query($connexion, $query);
+    var_dump($result);
+    if ($result) {
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        $rows = false;
+        $connexion_result = mysqli_connect_error();
+        var_dump($connexion_result);
+    }
+
+    $dto = ['data' => $rows];
+
+    var_dump($dto);
+    return $dto;
+}
+
+
+function getAllArticle() {
+    global $connexion;
+
+    $query = "SELECT * FROM article
+         INNER JOIN image ON article.image_id = image.id
+         ORDER BY modifiedDate DESC";
+    $result = mysqli_query($connexion, $query);
+    var_dump($query);
+    if ($result) {
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        $rows = "Error";
+    }
+
+    var_dump($rows);
+    return $rows;
+}
+
+function updateArticle($id) {
+    global $connexion;
+
+    $modified = date('Y-m-d h:i:s');
+    $data = array();
+    parse_str(file_get_contents('php://input'),$data);
+    var_dump($data);
+    $query = "UPDATE produit SET title='" . $data['title'] . "', description='" . $data['description'] . "', author_id=" . $data['author_id'] . ", image_id=" . $data['image'] . ", modifiedDate='$modified'";
+    $result = mysqli_query($connexion, $query);
+
+    if ($result) {
+        echo 'PUT réussi';
+    } else {
+        echo 'PUT échoué';
+    }
+}
+
+function addArticle() {
+    global $connexion;
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $author_id = $_POST['author_id'];
+    $image_id = $_POST['image_id'];
+    $created = $modified =  date('Y-m-d h:i:s');
+
+    $query = "INSERT INTO article (title, description, author_id, image_id, creationDate, modifiedDate)
+    VALUES ('$title', '$description', $author_id, $image_id, '$created', '$modified')";
+    $result = mysqli_query($connexion, $query);
+
+    if ($result) {
+        echo 'POST réussi';
+    } else {
+        echo $query;
+        echo 'POST échoué';
+    }
+}
+
+function deleteArticle($id) {
+    global $connexion;
+    $id = $_GET['id'];
+
+    $query = "DELETE FROM article WHERE id=$id";
+    $result = mysqli_query($connexion, $query);
+
+    if ($result) {
+        echo 'DELETE réussi';
+    } else {
+        echo 'DELETE échoué';
+    }
+}
