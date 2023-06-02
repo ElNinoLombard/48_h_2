@@ -1,23 +1,25 @@
 <div class="page-connection">
   <div class="form-connection">
     <h1>Connectez-vous</h1>
-    <form>
+    <div [formGroup]="form">
       <input
-        placeholder="Adresse email"
-        type="email"
-        id="email"
-        name="email"
-        required
-      />
-      <input
-        placeholder="Mot de passe"
-        type="password"
-        id="password"
-        name="password"
-        required
-      />
-      <button type="submit">Connexion</button>
-    </form>
+      placeholder="Adresse email"
+      type="email"
+      id="email"
+      name="email"
+      formControlName="mail"
+      required
+    />
+    <input
+      placeholder="Mot de passe"
+      type="password"
+      id="password"
+      name="password"
+      formControlName="password"
+      required
+    />
+      <button type="submit" (click)="validateUser()">Connexion</button>
+    </div>
   </div>
   <img
     src="../../../../assets/images/logo-big.png"
