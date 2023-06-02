@@ -1,7 +1,21 @@
-<div class="card-Asso">
-    <img src="chemin/vers/votre/image.jpg" alt="Image de la carte">
-    <h1>Nom de l'asso</h1>
-    <p>Numéro de téléphone : <a href="tel:0123456789">0123456789</a></p>
-    <p><a href="http://www.example.com">Site internet</a></p>
-    <p>Localisation : Adresse de la carte</p>
+<div class="associations-wrapper">
+  <div class="associations">
+    <div class="association card" *ngFor="let association of associations">
+      <div class="image-container">
+        <img src="{{ association.image }}" alt="profile-pic" />
+      </div>
+      <div class="info-container">
+        <h1>{{ association.nom }}</h1>
+        <hr />
+        <p>
+          <b>Numéro de téléphone :</b>
+          <a href="tel:{{ association.telephone }}">
+            {{ association.telephone }}</a
+          >
+        </p>
+        <p><a href="{{ association.site }}">Site internet</a></p>
+        <p><b>Localisation : </b>{{ association.localisation }}</p>
+      </div>
+    </div>
+  </div>
 </div>

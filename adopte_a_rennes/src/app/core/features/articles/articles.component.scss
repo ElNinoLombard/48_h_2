@@ -1,11 +1,58 @@
+.article-wrapper {
+  display: flex;
+}
 
-  .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap:nowrap
-  }
+.search-bar {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
 
-  .content {
-    flex-basis: 33.33%;
-    box-sizing: border-box;
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* Align cards to the right */
+  flex-grow: 1; /* Take remaining space */
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+  flex-basis: calc(
+    33.33% - 2em
+  ); /* Distribute cards in 3 columns with 1em margin */
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em;
+  max-width: 100%; /* Expand card to full width of article container */
+}
+
+em {
+  align-self: flex-end;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  color: #6699cc;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
   }
+}
+
+input {
+  width: 20em;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #ffffff00;
+  color: white;
+  border: white 1px solid;
+  border-radius: 40px;
+}
