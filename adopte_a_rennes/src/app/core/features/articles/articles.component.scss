@@ -10,8 +10,8 @@
 .articles {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end; /* Align cards to the right */
-  flex-grow: 1; /* Take remaining space */
+  justify-content: none;
+  flex-grow: 1;
 }
 
 .article {
@@ -30,7 +30,7 @@
   border-radius: 10px;
   padding: 1em;
   margin: 1em;
-  max-width: 100%; /* Expand card to full width of article container */
+  max-width: 100%;
 }
 
 em {
