@@ -2,19 +2,19 @@
   <div class="associations">
     <div class="association card" *ngFor="let association of associations">
       <div class="image-container">
-        <img src="{{ association.image }}" alt="profile-pic" />
+        <img src="{{ association.urlImage }}" alt="{{ association.alt }}" />
       </div>
       <div class="info-container">
-        <h1>{{ association.nom }}</h1>
+        <h1>{{ association.title }}</h1>
         <hr />
         <p>
           <b>Numéro de téléphone :</b>
-          <a href="tel:{{ association.telephone }}">
-            {{ association.telephone }}</a
+          <a href="tel:{{ association.contact! }}">
+            {{ association.contact! }}</a
           >
         </p>
-        <p><a href="{{ association.site }}">Site internet</a></p>
-        <p><b>Localisation : </b>{{ association.localisation }}</p>
+        <p><a href="{{ association.link }}">Site internet</a></p>
+        <p><b>Localisation : </b>{{ association.address }}</p>
       </div>
     </div>
   </div>

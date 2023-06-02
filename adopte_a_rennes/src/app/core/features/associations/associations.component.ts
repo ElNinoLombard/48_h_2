@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Association {
-  image: string;
-  nom: string;
-  telephone: string;
-  site: string;
-  localisation: string;
-}
+import { AssociationService } from 'src/app/services/association.service';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-associations',
@@ -14,52 +8,15 @@ export interface Association {
   styleUrls: ['./associations.component.scss'],
 })
 export class AssociationsComponent implements OnInit {
-  associations: Association[] = [
-    {
-      image: 'link-to-image.png',
-      nom: 'Association 1',
-      telephone: '06 00 00 00 00',
-      site: 'www.association1.com',
-      localisation: 'Paris',
-    },
-    {
-      image: 'link-to-image.png',
-      nom: 'Association 2',
-      telephone: '06 00 00 00 00',
-      site: 'www.association2.com',
-      localisation: 'Paris',
-    },
-    {
-      image: 'link-to-image.png',
-      nom: 'Association 3',
-      telephone: '06 00 00 00 00',
-      site: 'www.association3.com',
-      localisation: 'Paris',
-    },
-    {
-      image: 'link-to-image.png',
-      nom: 'Association 4',
-      telephone: '06 00 00 00 00',
-      site: 'www.association4.com',
-      localisation: 'Paris',
-    },
-    {
-      image: 'link-to-image.png',
-      nom: 'Association 5',
-      telephone: '06 00 00 00 00',
-      site: 'www.association5.com',
-      localisation: 'Paris',
-    },
-    {
-      image: 'link-to-image.png',
-      nom: 'Association 6',
-      telephone: '06 00 00 00 00',
-      site: 'www.association6.com',
-      localisation: 'Paris',
-    },
-  ];
+  associations: UserModel[] = [];
 
-  constructor() {}
+  constructor(private associationService: AssociationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.associationService.getAllAssociations().subscribe((associations: any) => {
+      console.log(associations);
+      this.associations = associations.data.filter((association: UserModel) => association.role_id === '4');
+      console.log(this.associations);
+    });
+  }
 }
