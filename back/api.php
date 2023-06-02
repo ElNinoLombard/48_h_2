@@ -22,6 +22,9 @@ switch ($request_method) {
                 echo json_encode($returnData['message'] = 'Id manquant');
             }
         }
+        if (preg_match('/association.*/', $route)) {
+            getAllAssociations();
+        }
         break;
     case 'POST':
         if (preg_match('/login.*/', $route)) {
@@ -102,11 +105,30 @@ function getAllArticle() {
     if ($result) {
         $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     } else {
-        $returnData['message'] = "Error 500";
+        $returnData['message'] = mysqli_connect_error();
     }
+
+    echo 'OUI';
     echo json_encode($returnData);
 }
 
+function getAllAssociations() {
+    global $connexion;
+    global $returnData;
+
+    $query = "SELECT * FROM user
+         INNER JOIN image ON user.image_id = image.id
+         where role_id = 4";
+    echo $query;
+    $result = mysqli_query($connexion, $query);
+    var_dump($result);
+    if ($result) {
+        $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        $returnData['message'] = mysqli_connect_errno();
+    }
+    echo json_encode($returnData);
+}
 function updateArticle($id) {
     global $connexion;
     global $returnData;

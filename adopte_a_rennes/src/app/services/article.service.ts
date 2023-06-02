@@ -15,8 +15,26 @@ export class ArticleService {
   }
 
   getAllArticle(): Observable<any>{
-    const url = `http://localhost${environment.backLocation}`;
-    console.log(this.http.get<any>(url).subscribe());
+    const url = `http://localhost${environment.backLocation}/article`;
+
     return this.http.get<any>(url);
+
+    }
+
+  addArticle(title: string, description: string, author_id: string, image_id: string, createdDate: string, modifiedDate: string): Observable<any> {
+    const url = `http://localhost${environment.backLocation}/article`;
+
+    const params = {
+      title,
+      description,
+      author_id,
+      image_id,
+      createdDate,
+      modifiedDate
+    }
+
+    return this.http.post<any>(url, params);
   }
+
+
 }
