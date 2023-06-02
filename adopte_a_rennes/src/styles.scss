@@ -40,13 +40,13 @@ $adopte_a_rennes-theme: mat.define-light-theme(
 @include mat.all-component-themes($adopte_a_rennes-theme);
 
 /* You can add global styles to this file, and also import other style files */
+
 body {
   font-family: "Comfortaa", sans-serif;
   color: #222222;
   background: linear-gradient(to bottom, #ecad7c, #f69b65);
   background-attachment: fixed;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin: auto 5%;
 }
 
 .title {
@@ -104,14 +104,6 @@ i {
   font-size: 16px;
   font-weight: 400;
 }
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 
 /* Webkit (Safari, Chrome) */
 ::-webkit-scrollbar {
@@ -123,12 +115,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c97412;
+  background: #f1f1f1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8a4c06;
+  background: #f1f1f1;
 }
 
 /* Firefox */
@@ -141,12 +133,12 @@ body {
 }
 
 ::-moz-scrollbar-thumb {
-  background: #c97412;
+  background: #f1f1f1;
   border-radius: 4px;
 }
 
 ::-moz-scrollbar-thumb:hover {
-  background: #c97412;
+  background: #f1f1f1;
 }
 
 /* Edge, IE */
@@ -159,10 +151,10 @@ body {
 }
 
 ::-ms-scrollbar-thumb {
-  background: #c97412;
+  background: #f1f1f1;
   border-radius: 4px;
 }
 
 ::-ms-scrollbar-thumb:hover {
-  background: #c97412;
+  background: #f1f1f1;
 }

@@ -1,9 +1,27 @@
+body {
+  overflow: hidden; /* Hide the scroll bar for the entire page */
+}
+
 .associations-wrapper {
   display: flex;
   flex-direction: column;
   margin-top: 2em;
-  max-height: 80vh; /* Set a fixed height for the container */
-  overflow-y: scroll; /* Enable vertical scrolling */
+  max-height: 75vh; /* Set a fixed height for the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: thin; /* Set a thinner scrollbar */
+}
+
+.associations-wrapper::-webkit-scrollbar {
+  width: 6px; /* Set the width of the scrollbar */
+}
+
+.associations-wrapper::-webkit-scrollbar-track {
+  background: transparent; /* Set a transparent background color for the track */
+}
+
+.associations-wrapper::-webkit-scrollbar-thumb {
+  background: #f1f1f1; /* Set a color for the scrollbar thumb */
+  border-radius: 3px; /* Add rounded corners to the scrollbar thumb */
 }
 
 .associations {
