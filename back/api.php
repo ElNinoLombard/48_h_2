@@ -117,8 +117,7 @@ function getAllAssociations() {
     global $returnData;
 
     $query = "SELECT * FROM user
-         INNER JOIN image ON user.image_id = image.id
-         where role_id = 4";
+    where role_id = 4";
 
     $result = mysqli_query($connexion, $query);
 

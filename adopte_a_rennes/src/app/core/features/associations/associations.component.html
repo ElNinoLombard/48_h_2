@@ -1,4 +1,12 @@
 <div class="associations-wrapper">
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Rechercher un article"
+      [(ngModel)]="searchTerm"
+      (input)="filterArticles()"
+    />
+  </div>
   <div class="associations">
     <div class="association card" *ngFor="let association of associations">
       <div class="image-container">
@@ -13,7 +21,7 @@
             {{ association.contact! }}</a
           >
         </p>
-        <p><a href="{{ association.link }}">Site internet</a></p>
+        <p><b>Site internet : </b><a href="{{ association.link }}">{{ association.link }}</a></p>
         <p><b>Localisation : </b>{{ association.address }}</p>
       </div>
     </div>

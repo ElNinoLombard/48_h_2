@@ -2,6 +2,6 @@
 
 $server = 'localhost';
 $username = 'root';
-$password = 'root';
+$password = '';
 $db = 'challenge';
 $connexion = mysqli_connect($server, $username, $password, $db);

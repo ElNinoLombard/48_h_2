@@ -1,31 +1,16 @@
-body {
-  overflow: hidden; /* Hide the scroll bar for the entire page */
-}
-
 .associations-wrapper {
   display: flex;
-  flex-direction: column;
-  margin-top: 2em;
-  max-height: 75vh; /* Set a fixed height for the container */
-  overflow-y: auto; /* Enable vertical scrolling */
-  scrollbar-width: thin; /* Set a thinner scrollbar */
 }
 
-.associations-wrapper::-webkit-scrollbar {
-  width: 6px; /* Set the width of the scrollbar */
-}
-
-.associations-wrapper::-webkit-scrollbar-track {
-  background: transparent; /* Set a transparent background color for the track */
-}
-
-.associations-wrapper::-webkit-scrollbar-thumb {
-  background: #f1f1f1; /* Set a color for the scrollbar thumb */
-  border-radius: 3px; /* Add rounded corners to the scrollbar thumb */
+.search-bar {
+  flex: 0 0 auto;
+  margin-right: 1em;
 }
 
 .associations {
-  justify-content: flex-end; /* Align cards to the right */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .card {
@@ -33,5 +18,24 @@ body {
   border-radius: 10px;
   padding: 1em;
   margin: 1em;
-  max-width: 60%; /* Expand card to full width of article container */
+  max-width: 100%; /* Expand card to full width of article container */
+}
+
+
+input {
+  width: 20em;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #ffffff00;
+  color: white;
+  border: white 1px solid;
+  border-radius: 40px;
+}
+
+input::placeholder {
+  color: white;
+}
+
+input:focus {
+  outline: none;
 }

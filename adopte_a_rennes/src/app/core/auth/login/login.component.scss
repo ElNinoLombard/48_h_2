@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
 
 .form-connection,
@@ -18,8 +17,8 @@ form {
 
 .form-connection input {
   width: 560px;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 1em;
+  margin-bottom: 1em;
   background-color: #ffffff00;
   color: white;
   border: white 1px solid;
