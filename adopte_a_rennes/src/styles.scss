@@ -115,12 +115,12 @@ i {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c97412;
+  background: #f1f1f1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8a4c06;
+  background: #f1f1f1;
 }
 
 /* Firefox */
@@ -133,12 +133,12 @@ i {
 }
 
 ::-moz-scrollbar-thumb {
-  background: #c97412;
+  background: #f1f1f1;
   border-radius: 4px;
 }
 
 ::-moz-scrollbar-thumb:hover {
-  background: #c97412;
+  background: #f1f1f1;
 }
 
 /* Edge, IE */
@@ -151,10 +151,10 @@ i {
 }
 
 ::-ms-scrollbar-thumb {
-  background: #c97412;
+  background: #f1f1f1;
   border-radius: 4px;
 }
 
 ::-ms-scrollbar-thumb:hover {
-  background: #c97412;
+  background: #f1f1f1;
 }
