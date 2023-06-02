@@ -1,13 +1,14 @@
 <div class="page-connection">
   <div class="form-connection">
     <h1>Connectez-vous</h1>
-    <form>
+    <form (ngSubmit)="login(email.value, password.value)">
       <input
         placeholder="Adresse email"
         type="email"
         id="email"
         name="email"
         required
+        #email
       />
       <input
         placeholder="Mot de passe"
@@ -15,8 +16,16 @@
         id="password"
         name="password"
         required
+        #password
       />
       <button type="submit">Connexion</button>
+      <!-- Display an error message if authentication fails
+      <div
+        *ngIf="!authService.isAuthenticated()"
+        style="color: red; margin-top: 2em"
+      >
+        Invalid credentials!
+      </div> -->
     </form>
   </div>
   <img
