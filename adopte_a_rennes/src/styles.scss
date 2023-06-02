@@ -40,13 +40,13 @@ $adopte_a_rennes-theme: mat.define-light-theme(
 @include mat.all-component-themes($adopte_a_rennes-theme);
 
 /* You can add global styles to this file, and also import other style files */
+
 body {
   font-family: "Comfortaa", sans-serif;
   color: #222222;
   background: linear-gradient(to bottom, #ecad7c, #f69b65);
   background-attachment: fixed;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin: auto 5%;
 }
 
 .title {
@@ -103,14 +103,6 @@ a {
 i {
   font-size: 16px;
   font-weight: 400;
-}
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 /* Webkit (Safari, Chrome) */
