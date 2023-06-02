@@ -100,6 +100,7 @@ function getAllArticle() {
 
     $query = "SELECT * FROM article
          INNER JOIN image ON article.image_id = image.id
+         INNER JOIN user ON article.author_id = user.id
          ORDER BY modifiedDate DESC";
     $result = mysqli_query($connexion, $query);
     if ($result) {
@@ -108,7 +109,6 @@ function getAllArticle() {
         $returnData['message'] = mysqli_connect_error();
     }
 
-    echo 'OUI';
     echo json_encode($returnData);
 }
 
@@ -119,9 +119,9 @@ function getAllAssociations() {
     $query = "SELECT * FROM user
          INNER JOIN image ON user.image_id = image.id
          where role_id = 4";
-    echo $query;
+
     $result = mysqli_query($connexion, $query);
-    var_dump($result);
+
     if ($result) {
         $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     } else {
