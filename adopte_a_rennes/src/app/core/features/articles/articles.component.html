@@ -13,18 +13,19 @@
         <h1>{{ article.title }}</h1>
         <hr />
         {{
-          article.description!.length > 300
-            ? (article.description! | slice : 0 : 300) + "..."
+          article.description!.length > 250
+            ? (article.description! | slice : 0 : 250) + "..."
             : article.description!
         }}
         <button
-          *ngIf="article.description!.length > 300"
+          *ngIf="article.description!.length > 250"
           (click)="showFullContent(article)"
         >
           voir plus
         </button>
         <br />
-        <em> - {{ article.author_id! }}</em>
+        <br />
+        <em> - {{ article.firstname }} {{ article.lastname }}</em>
       </div>
     </div>
   </div>
