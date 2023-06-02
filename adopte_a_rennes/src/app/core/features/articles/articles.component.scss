@@ -27,6 +27,8 @@
 
 .card {
   background-color: white;
+  width: 250px;
+  height: 250px;
   border-radius: 10px;
   padding: 1em;
   margin: 1em;
@@ -55,4 +57,12 @@ input {
   color: white;
   border: white 1px solid;
   border-radius: 40px;
+}
+
+input::placeholder {
+  color: white;
+}
+
+input:focus {
+  outline: none;
 }

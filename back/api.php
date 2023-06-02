@@ -98,10 +98,10 @@ function getAllArticle() {
     global $connexion;
     global $returnData;
 
-    $query = "SELECT * FROM article
-         INNER JOIN image ON article.image_id = image.id
-         INNER JOIN user ON article.author_id = user.id
-         ORDER BY modifiedDate DESC";
+    $query = "SELECT article.title, article.description, user.firstname, user.lastname FROM article
+    LEFT JOIN image ON article.image_id = image.id
+    LEFT JOIN user ON article.author_id = user.id
+    ORDER BY modifiedDate DESC";
     $result = mysqli_query($connexion, $query);
     if ($result) {
         $returnData['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
